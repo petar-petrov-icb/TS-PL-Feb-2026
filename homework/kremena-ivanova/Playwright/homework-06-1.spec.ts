@@ -1,4 +1,4 @@
-//npx playwright test --reporter=html
+//npx playwright test homework-06-1.spec.ts --reporter=html
 
 // create the below 2 test scenarios
 // put all groups of actions into a test.step
