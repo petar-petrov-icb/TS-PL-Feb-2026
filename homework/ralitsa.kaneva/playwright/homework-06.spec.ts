@@ -74,7 +74,7 @@ test(`Verify rahulshettyacademy home page`, async ({ page }) => {
 });
 
 // second test scenario use only Playwright selectors like page.getByRole('button', { name: 'Вход' }).click();
-test.only('Navigate', async ({ page }) => {
+test('Navigate', async ({ page }) => {
   // navigate to https://testautomationpractice.blogspot.com/p/playwrightpractice.html
   await test.step('navigate to https://testautomationpractice.blogspot.com/p/playwrightpractice.html', async () => {
     await page.goto('https://testautomationpractice.blogspot.com/p/playwrightpractice.html');
