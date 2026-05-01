@@ -5,7 +5,7 @@
 // after all homeworks are done I will replace the Page and Step files with the example solutions ones
 
 // scenario 1:
-// where you check the business plan details offered by the test site
+// where we check the business plan details offered by the test site
 // login to the test site 'https://st2016.inv.bg/login/', use credentials enum for login details
 // navigate to "Нова Фактура" page, verify you are on the correct page
 // click on the box link "Преминете на по-висок план", navigating to a new page, verify you are on the correct page
