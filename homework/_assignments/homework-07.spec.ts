@@ -1,6 +1,6 @@
-// do the correct reports to use page.factory and credentials enum
+// do the correct imports to use page.factory and credentials enum
 // you may need to create new Page Object Model Classes and Steps !
-// do this in the normal project area playwright/pages and playwright/steps, 
+// do this in the normal project area playwright/pages and playwright/steps
 // but keep your scenario spec file in your homework folder
 // after all homeworks are done I will replace the Page and Step files with the example solutions ones
 
