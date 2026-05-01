@@ -13,6 +13,7 @@
 // verify each plan's details: cost (Lev and Euro), benefits (client number, invoices, employees number), other benefits (logo, signature etc.)
 
 // scenario 2:
+// where we verify client creation and deletion
 // login to the test site 'https://st2016.inv.bg/login/', use credentials enum for login details
 // navigate to page "Клиенти"`, verify you are on the correct page
 // click button "Нов Клиент", verify you are on the correct page
