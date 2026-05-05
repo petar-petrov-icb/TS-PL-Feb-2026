@@ -121,7 +121,7 @@ test.describe('Homework-6 - Locator, Actions & Assertions Practise', { tag: '@hw
 
     await test.step('Verify coloured text', async () => {
       await expect
-        .soft(page.getByText('colored text', { exact: true }), 'Verify coloured text')
+        .soft(page.getByText('colored text'), 'Verify coloured text')
         .toHaveCSS('color', 'rgb(255, 0, 0)');
     });
 
