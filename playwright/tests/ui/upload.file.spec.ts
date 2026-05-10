@@ -32,7 +32,6 @@ import { Credentials } from '@lib/resourses/enums/Credentials';
     },
     async ({ sharedSteps, landintSteps, documentSteps }) => {
       await sharedSteps.navigateToSite('https://st2016.inv.bg/login/');
-      await sharedSteps.login(username, password);
       await landintSteps.navigateToDocumentsPage();
       await documentSteps.clickUploadDocumentLink();
       await documentSteps.uploadFile(filename);

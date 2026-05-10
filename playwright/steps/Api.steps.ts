@@ -20,9 +20,19 @@ export default class ApiSteps {
     this.response = await this.invBgApi.getItemsList();
   }
 
+  @step('Get Item')
+  async getItem(id: number) {
+    this.response = await this.invBgApi.getItem(id);
+  }
+
   @step('Create Item')
   async postCreateItem() {
     this.response = await this.invBgApi.createItem();
+  }
+
+  @step('Update Item')
+  async patchUpdateItem(id: number) {
+    this.response = await this.invBgApi.updateItem(id);
   }
 
   @step('Delete Item')
@@ -37,6 +47,12 @@ export default class ApiSteps {
     return elementValue;
   }
 
+  @step('Verify Response Status')
+  async verifyResponseStatus(status: number) {
+    const expectedStatus = this.response.status();
+    expect(status, 'Verify token key exists in response body').toEqual(expectedStatus);
+  }
+
   @step('Verify Element present in response body')
   async verifyTokenExists() {
     const responseBody = await this.response.json();
@@ -46,8 +62,22 @@ export default class ApiSteps {
 
   @step('Verify Element Value in response body')
   async verifyElementValue(jsonPath: string, expectedValue: number) {
-    const responseBody: { id: string } = await this.response.json();
+    const responseBody = await this.response.json();
     const actualValue = jp.query(responseBody, jsonPath)[0];
     expect(actualValue, 'Verify Element Value').toBe(expectedValue);
+  }
+
+  @step('Verify Element Value in response body')
+  async verifyElementStringValue(jsonPath: string, expectedValue: string) {
+    const responseBody = await this.response.json();
+    const actualValue = jp.query(responseBody, jsonPath)[0];
+    expect(actualValue, 'Verify Element Value').toBe(expectedValue);
+  }
+
+  @step('Verify Expected Response body')
+  async verifyExpectedResponsebody(expectedResponseBody) {
+    const actualResponseBody = await this.response.json();
+    console.log(actualResponseBody);
+    expect(actualResponseBody, 'Verify Element Value').toEqual(expectedResponseBody);
   }
 }

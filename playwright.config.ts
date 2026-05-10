@@ -79,8 +79,9 @@ export default defineConfig({
     trace: 'retain-on-failure',
 
     /* Activates slow motion exectution in headed mode */
-    // launchOptions: {
-    //   slowMo: 1250,
+    launchOptions: {
+      slowMo: 1250,
+    },
   },
 
   /* Configure projects for major browsers */
@@ -121,9 +122,15 @@ export default defineConfig({
       testMatch: /generate\.token\.ts/,
       use: {},
     },
+    // { name: 'setup', testMatch: /.*\.setup\.ts/ },
     {
       name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        // Use prepared auth state.
+        storageState: 'auth/user.json',
+      },
       dependencies: ['generateToken'],
     },
   ],

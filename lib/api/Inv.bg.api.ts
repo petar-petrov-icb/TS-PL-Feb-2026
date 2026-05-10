@@ -36,16 +36,14 @@ export default class InvBgApi {
     };
 
     // Log the request details and hide sensitive information in logs
-    await test.info().attach('Request Enpoint', {
-      body: 'POST: ' + url,
-      contentType: 'application/json',
-    });
-    await test.info().attach('Request headers', {
-      body: JSON.stringify(headers, null, 2),
-      contentType: 'application/json',
-    });
-    await test.info().attach('Request body', {
-      body: JSON.stringify(body, null, 2),
+    await test.info().attach('Request Details:', {
+      body:
+        'PATCH: ' +
+        url +
+        '\n' +
+        JSON.stringify(this.headers, null, 2) +
+        '\n' +
+        JSON.stringify(body, null, 2),
       contentType: 'application/json',
     });
 
@@ -71,12 +69,35 @@ export default class InvBgApi {
     const url: string = this.baseUrl + '/items';
 
     // Log the request details and hide sensitive information in logs
-    await test.info().attach('Request Enpoint', {
-      body: 'GET: ' + url,
+    await test.info().attach('Request Details:', {
+      body: 'PATCH: ' + url + '\n' + JSON.stringify(this.headers, null, 2),
       contentType: 'application/json',
     });
-    await test.info().attach('Request headers', {
-      body: JSON.stringify(this.headers, null, 2),
+
+    // Make the GET request to show item list
+    const response: APIResponse = await this.request.get(url, { headers: this.headers });
+
+    // Log the response details
+    const responseBody = await response.json();
+    await test.info().attach('Response Body', {
+      body: JSON.stringify(responseBody, null, 2),
+      contentType: 'application/json',
+    });
+
+    return response;
+  }
+
+  /**
+   * Sends a GET item request and return item details
+   * @returns {Promise<APIResponse>}
+   */
+  async getItem(id: number): Promise<APIResponse> {
+    // Prepare the data for the request
+    const url: string = this.baseUrl + `/items/${id}`;
+
+    // Log the request details and hide sensitive information in logs
+    await test.info().attach('Request Details:', {
+      body: 'PATCH: ' + url + '\n' + JSON.stringify(this.headers, null, 2),
       contentType: 'application/json',
     });
 
@@ -114,16 +135,14 @@ export default class InvBgApi {
     };
 
     // Log the request details and hide sensitive information in logs
-    await test.info().attach('Request Enpoint', {
-      body: 'POST: ' + url,
-      contentType: 'application/json',
-    });
-    await test.info().attach('Request headers', {
-      body: JSON.stringify(this.headers, null, 2),
-      contentType: 'application/json',
-    });
-    await test.info().attach('Request body', {
-      body: JSON.stringify(body, null, 2),
+    await test.info().attach('Request Details:', {
+      body:
+        'PATCH: ' +
+        url +
+        '\n' +
+        JSON.stringify(this.headers, null, 2) +
+        '\n' +
+        JSON.stringify(body, null, 2),
       contentType: 'application/json',
     });
 
@@ -144,6 +163,48 @@ export default class InvBgApi {
   }
 
   /**
+   * Sends a UPDATE item request to change item details
+   * @returns {Promise<APIResponse>}
+   */
+  async updateItem(id: number): Promise<APIResponse> {
+    // Prepare the data for the request
+    const url: string = this.baseUrl + `/items/${id}`;
+
+    const body = {
+      name: 'Дъвка Турбо',
+      price: 0.25,
+      currency: 'BGN',
+      price_for_quantity: 1,
+      quantity_unit: 'кг.',
+      is_limited: false,
+      catalog_number: '46',
+      outside_id: 46,
+      name_en: 'Chewing Gum Turbo',
+      tags: ['tag_1', 'tag_2'],
+    };
+
+    // Log the request details and hide sensitive information in logs
+    await test.info().attach('Request Details:', {
+      body:
+        'PATCH: ' +
+        url +
+        '\n' +
+        JSON.stringify(this.headers, null, 2) +
+        '\n' +
+        JSON.stringify(body, null, 2),
+      contentType: 'application/json',
+    });
+
+    // Make the GET request to show item list
+    const response: APIResponse = await this.request.patch(url, {
+      headers: this.headers,
+      data: body,
+    });
+
+    return response;
+  }
+
+  /**
    * Deletes an item
    * @returns {Promise<APIResponse>}
    */
@@ -152,12 +213,8 @@ export default class InvBgApi {
     const url: string = this.baseUrl + `/items/${id}`;
 
     // Log the request details and hide sensitive information in logs
-    await test.info().attach('Request Enpoint', {
-      body: 'DELETE: ' + url,
-      contentType: 'application/json',
-    });
-    await test.info().attach('Request headers', {
-      body: JSON.stringify(this.headers, null, 2),
+    await test.info().attach('Request Details:', {
+      body: 'PATCH: ' + url + '\n' + JSON.stringify(this.headers, null, 2),
       contentType: 'application/json',
     });
 
